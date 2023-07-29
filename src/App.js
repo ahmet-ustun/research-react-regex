@@ -1,30 +1,21 @@
-import { useState } from "react";
 import "./App.css";
-
-const regexFunction = (string, length) => {
-  const hasSpace = /\s/g;
-
-  if (string.length > length || hasSpace.test(string)) {
-    return false;
-  }
-
-  const pattern = /[a-zA-Z0-9`!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?~]+/g;
-
-  return pattern.test(string);
-};
+import Input from "./Input/Input.js";
 
 function App() {
-  const [text, setText] = useState();
-
-  const onChange = (event) => {
-    setText(event.target.value);
-  };
-
   return (
     <div className="App">
-      <input type="text" value={text} onChange={onChange} />
-      <p>{text}</p>
-      {text && <p>{regexFunction(text, 8) ? "Valid" : "Invalid"}</p>}
+      <Input label={"Try adding some text below:"} text={""} disabled={false} />
+
+      <Input label={"Testing #1: Just whitespace"} text={" "} disabled={true} />
+      <Input label={"Testing #2: With long text"} text={"thisisalongtext"} disabled={true} />
+      <Input label={"Testing #3: Given length"} text={"12345678"} disabled={true} />
+      <Input label={"Testing #4: With uppercase"} text={"Ahmet"} disabled={true} />
+      <Input label={"Testing #5: With lowercase"} text={"ahmet"} disabled={true} />
+      <Input label={"Testing #6: With characters"} text={"@#me?"} disabled={true} />
+      <Input label={"Testing #7: With one digit"} text={"8"} disabled={true} />
+      <Input label={"Testing #8: With whitespace"} text={"Ahmet Ustun"} disabled={true} />
+      <Input label={"Testing #9: With newline"} text={"Ahmet\nUstun"} disabled={true} />
+      <Input label={"Testing #10: Just newline"} text={"\n"} disabled={true} />
     </div>
   );
 }
